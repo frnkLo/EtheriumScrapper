@@ -1,4 +1,7 @@
 package com.example.EtheriumScrapper.repositories;
 
-public interface DealRepository {
+import com.example.EtheriumScrapper.entities.Deal;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface DealRepo extends JpaRepository<Deal, Long> {
 }

@@ -9,6 +9,7 @@ import lombok.Data;
 @Entity
 @Data
 public class AddressLabel {
+
     @Id
     private String address;
     private String label;
