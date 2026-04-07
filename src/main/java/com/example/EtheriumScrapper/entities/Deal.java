@@ -3,6 +3,7 @@ package com.example.EtheriumScrapper.entities;
 import jakarta.persistence.*;
 import lombok.Data;
 
+
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 

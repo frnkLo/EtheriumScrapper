@@ -2,6 +2,7 @@ package com.example.EtheriumScrapper.service;
 
 
 import com.example.EtheriumScrapper.entities.AddressLabel;
+import com.example.EtheriumScrapper.entities.Deal;
 import com.example.EtheriumScrapper.repositories.AddressLabelRepo;
 import com.example.EtheriumScrapper.repositories.DealRepo;
 import com.example.EtheriumScrapper.scrapper.Web3Scrapper;
@@ -35,6 +36,20 @@ public class ArbitrageService {
                 ));
 
 
+        List<Deal> filteredDeals = web3Scrapper.scanAndFilterTransactions(
+                startBlock,
+                endBlock,
+                pools,
+                targetDictionary
+        );
+
+
+        if (!filteredDeals.isEmpty()) {
+            dealRepo.saveAll(filteredDeals);
+            log.info("Saved {} deals to DB", filteredDeals.size());
+        } else {
+            log.info("No matching deals found for the given dictionary.");
+        }
 
     }
 }
