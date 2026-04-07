@@ -11,23 +11,23 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("/api/v1/arbitrage")
+@RequestMapping("/api")
 @RequiredArgsConstructor
-//@CrossOrigin(origins = "*") // Для работы с Angular
+@CrossOrigin(origins = "http://localhost:4200")
 public class ArbitrageController {
 
     private final ArbitrageService arbitService;
     private final DealRepo dealRepo;
 
 
-    @PostMapping("/start-scraping")
-    public ResponseEntity<String> startScraping(@RequestBody ScrapeRequestDto request) {
-        arbitService.executeScrapingTask(
+    @PostMapping("/start-scrapping")
+    public ResponseEntity<String> startScrapping(@RequestBody ScrapeRequestDto request) {
+        arbitService.executeScrappingTask(
                 request.getStartBlock(),
                 request.getEndBlock(),
                 request.getPoolAddresses()
         );
-        return ResponseEntity.ok("Scraping initiated");
+        return ResponseEntity.ok("Scrapping initiated");
     }
 
     @GetMapping("/analytics")

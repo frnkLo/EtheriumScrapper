@@ -1,10 +1,7 @@
 package com.example.EtheriumScrapper.entities;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
 
 
@@ -23,5 +20,15 @@ public class ScrapperSession {
     private LocalDateTime endedAt;
     private Long startBlock;
     private Long endBlock;
-    private String status;
+
+
+    @Enumerated(EnumType.STRING)
+    private SessionStatus status;
+
+    public enum SessionStatus {
+        IN_PROGRESS,
+        COMPLETED,
+        FAILED,
+        STOPPED
+    }
 }
